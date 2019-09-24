@@ -1,184 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:labelFor="@+id/constraintLayout"
+    android:background="#0fa870"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/vertLayout1"
-        android:layout_width="0dp"
-        android:layout_height="587dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:labelFor="@+id/vertLayout1"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_title"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginRight="30dp"
+        android:background="#fff"
+        android:elevation="4dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:padding="20dp">
 
         <LinearLayout
-            android:id="@+id/horizLayout1"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:labelFor="@+id/horizLayout1"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingTop="30dp">
 
-            <TextView
-                android:id="@+id/textLabel"
-                android:layout_width="125dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:labelFor="@+id/textLabel"
-                android:text="Text"
-                android:textSize="16sp"
-                tools:text="Text:" />
-
-            <EditText
-                android:id="@+id/text"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:ems="10"
-                android:maxLength="30"
-                android:inputType="textPersonName"
-                android:labelFor="@+id/text" />
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/icon_palin_text"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignTop="@id/inputLay_plain"
+                    android:layout_alignBottom="@id/inputLay_plain"
+                    android:src="@drawable/plain_text" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputLay_plain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_toRightOf="@id/icon_palin_text">
+
+                    <EditText
+                        android:id="@+id/text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Plain Text"
+                        android:textSize="12sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/icon_encrypt"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/inputLay_plain"
+                    android:layout_alignTop="@id/inputLay_plain_2"
+                    android:layout_alignBottom="@id/inputLay_plain_2"
+                    android:src="@drawable/kata_kunci" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputLay_plain_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inputLay_plain"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_toRightOf="@id/icon_encrypt">
+
+                    <EditText
+                        android:id="@+id/keyphrase"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Key"
+                        android:textSize="12sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RadioGroup
+                    android:id="@+id/encryptGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_below="@+id/inputLay_plain_2"
+                    android:layout_weight="0"
+                    android:labelFor="@+id/encryptGroup"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/encrypt"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:gravity="center_vertical"
+                        android:labelFor="@+id/encrypt"
+                        android:text="encrypt"
+                        android:textSize="16sp"
+                        tools:text="Encrypt" />
+
+                    <RadioButton
+                        android:id="@+id/decrypt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:labelFor="@+id/decrypt"
+                        android:text="decrypt"
+                        android:textSize="16sp"
+                        tools:text="Decrypt" />
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/runButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/encryptGroup"
+                    android:layout_margin="22dp"
+                    android:background="#d67601"
+                    android:text="RUN"
+                    android:onClick="encryptOrDecryptUsingKeyphraseOnClick"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:layout_below="@+id/runButton"
+                    android:gravity="center_horizontal"
+                    android:text="RESULT ENCRYPTION"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/icon_result"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/result"
+                    android:layout_alignTop="@id/result_encryption"
+                    android:layout_alignBottom="@id/result_encryption"
+                    android:src="@drawable/encrypt_2" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/result_encryption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/result"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_toRightOf="@id/icon_encrypt">
+
+                    <EditText
+                        android:id="@+id/answer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Result"
+                        android:textSize="12sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/horizLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:labelFor="@+id/horizLayout2"
-            android:orientation="horizontal">
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/keyphraseLabel"
-                android:layout_width="125dp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:labelFor="@+id/keyphraseLabel"
-                android:text="key_phrase"
-                android:textSize="16sp"
-                tools:text="Key Phrase:" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_title"
+        android:layout_centerHorizontal="true"
+        android:elevation="4dp">
 
-            <EditText
-                android:id="@+id/keyphrase"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:maxLength="15"
-                android:inputType="textPersonName"
-                android:labelFor="@+id/keyphrase" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/user_profile_photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/background_layer" />
 
-        <RadioGroup
-            android:id="@+id/encryptGroup"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_weight="0"
-            android:labelFor="@+id/encryptGroup"
-            android:orientation="horizontal">
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="cari.json"
+            app:lottie_loop="true" />
+    </FrameLayout>
 
-            <RadioButton
-                android:id="@+id/encrypt"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:checked="true"
-                android:gravity="center_vertical"
-                android:labelFor="@+id/encrypt"
-                android:text="encrypt"
-                android:textSize="16sp"
-                tools:text="Encrypt" />
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
+        android:gravity="center_horizontal"
+        android:text="ENCRYPTION VIGENERE"
+        android:textColor="#fff"
+        android:textSize="23sp"
+        android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/decrypt"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:labelFor="@+id/decrypt"
-                android:text="decrypt"
-                android:textSize="16sp"
-                tools:text="Decrypt" />
-        </RadioGroup>
-
-        <LinearLayout
-            android:id="@+id/horizLayout3"
-            android:layout_width="wrap_content"
-            android:layout_height="325dp"
-            android:layout_gravity="center_horizontal"
-            android:labelFor="@+id/horizLayout3"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/runButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:labelFor="@+id/runButton"
-                android:onClick="encryptOrDecryptUsingKeyphraseOnClick"
-                android:text="Run"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/horizLayout4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:labelFor="@+id/horizLayout4"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/resultsMainSectionLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:labelFor="@+id/resultsMainSectionLabel"
-                android:text="results"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                tools:text="Results" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/horizLayout5"
-            android:layout_width="312dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:labelFor="@+id/horizLayout5"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/resultsMessageLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:labelFor="@+id/resultsMessageLabel"
-                android:text="result_message"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/answer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:longClickable="false"
-                android:focusable="false"
-                android:inputType="textMultiLine"
-                android:labelFor="@+id/answer" />
-        </LinearLayout>
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         text = findViewById(com.huda.vigenere_chiper.R.id.text);
         keyphrase = findViewById(com.huda.vigenere_chiper.R.id.keyphrase);
@@ -63,6 +65,34 @@ public class MainActivity extends AppCompatActivity {
                 this.answer.setText(shiftedString.toString());
             }
         }
+        encrypt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(encrypt.isChecked()){
+                    text.setText("");
+//                    keyphrase.setText("");
+                    answer.setText("");
+                }else{
+                    text.setText("");
+//                    keyphrase.setText("");
+                    answer.setText("");
+                }
+            }
+        });
+        decrypt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(encrypt.isChecked()){
+                    text.setText("");
+//                    keyphrase.setText("");
+                    answer.setText("");
+                }else{
+                    text.setText("");
+//                    keyphrase.setText("");
+                    answer.setText("");
+                }
+            }
+        });
     } // end of encryptOrDecryptUsingKeyphrase method.
     @SuppressLint("NewApi")
     private String encryptAlgorithm(String text, String keyphrase) {
