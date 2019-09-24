@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0fa870"
+    android:background="#4A9586"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".MainActivity">
@@ -200,7 +200,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="5dp"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="cari.json"
+            app:lottie_fileName="cari_3.json"
             app:lottie_loop="true" />
     </FrameLayout>
 
