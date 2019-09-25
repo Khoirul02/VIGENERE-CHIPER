@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,148 +22,153 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="30dp">
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:paddingTop="30dp">
 
-                <ImageView
-                    android:id="@+id/icon_palin_text"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignTop="@id/inputLay_plain"
-                    android:layout_alignBottom="@id/inputLay_plain"
-                    android:src="@drawable/plain_text" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputLay_plain"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-8dp"
-                    android:layout_toRightOf="@id/icon_palin_text">
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <EditText
-                        android:id="@+id/edtPlain"
+                    <ImageView
+                        android:id="@+id/icon_palin_text"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignTop="@id/inputLay_plain"
+                        android:layout_alignBottom="@id/inputLay_plain"
+                        android:src="@drawable/plain_text" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLay_plain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:hint="Plain Text"
-                        android:textSize="12sp" />
+                        android:layout_marginLeft="-8dp"
+                        android:layout_toRightOf="@id/icon_palin_text">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edtPlain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:hint="Plain Text"
+                            android:textSize="12sp" />
 
-                <ImageView
-                    android:id="@+id/icon_encrypt"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_below="@id/inputLay_plain"
-                    android:layout_alignTop="@id/inputLay_plain_2"
-                    android:layout_alignBottom="@id/inputLay_plain_2"
-                    android:src="@drawable/kata_kunci" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputLay_plain_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/inputLay_plain"
-                    android:layout_marginLeft="-8dp"
-                    android:layout_toRightOf="@id/icon_encrypt">
+                    <ImageView
+                        android:id="@+id/icon_encrypt"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/inputLay_plain"
+                        android:layout_alignTop="@id/inputLay_plain_2"
+                        android:layout_alignBottom="@id/inputLay_plain_2"
+                        android:src="@drawable/kata_kunci" />
 
-                    <EditText
-                        android:id="@+id/edtKey"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputLay_plain_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:hint="Key"
-                        android:textSize="12sp" />
+                        android:layout_below="@+id/inputLay_plain"
+                        android:layout_marginLeft="-8dp"
+                        android:layout_toRightOf="@id/icon_encrypt">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/edtKey"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:hint="Key"
+                            android:textSize="12sp" />
 
-                <Switch
-                    android:id="@+id/sw"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/inputLay_plain_2"
-                    android:layout_marginLeft="10dp"
-                    android:text="Encrypt" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/runButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/sw"
-                    android:layout_margin="22dp"
-                    android:background="#d67601"
-                    android:text="RUN"
-                    android:onClick="encryptOrDecryptUsingKeyphraseOnClick"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="18sp" />
-
-
-                <TextView
-                    android:id="@+id/result"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
-                    android:layout_below="@+id/runButton"
-                    android:gravity="center_horizontal"
-                    android:text="RESULT ENCRYPTION"
-                    android:textColor="#000"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/icon_result"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_below="@id/result"
-                    android:layout_alignTop="@id/result_encryption"
-                    android:layout_alignBottom="@id/result_encryption"
-                    android:src="@drawable/encrypt_2" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/result_encryption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/result"
-                    android:layout_marginLeft="-8dp"
-                    android:layout_toRightOf="@id/icon_encrypt">
-
-                    <EditText
-                        android:id="@+id/edtResult"
+                    <Switch
+                        android:id="@+id/sw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/inputLay_plain_2"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:hint="Result"
-                        android:textSize="12sp" />
+                        android:text="Encrypt" />
 
-                </com.google.android.material.textfield.TextInputLayout>
-                <Button
-                    android:id="@+id/resetButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/result_encryption"
-                    android:layout_margin="22dp"
-                    android:background="#d67601"
-                    android:text="RESET"
-                    android:onClick="encryptOrDecryptUsingKeyphraseOnClick"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="18sp" />
-            </RelativeLayout>
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/runButton"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/sw"
+                        android:layout_margin="22dp"
+                        android:background="#d67601"
+                        android:onClick="encryptOrDecryptUsingKeyphraseOnClick"
+                        android:text="RUN"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/result"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/runButton"
+                        android:gravity="center_horizontal"
+                        android:text="RESULT ENCRYPTION"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/icon_result"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/result"
+                        android:layout_alignTop="@id/result_encryption"
+                        android:layout_alignBottom="@id/result_encryption"
+                        android:src="@drawable/encrypt_2" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/result_encryption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/result"
+                        android:layout_marginLeft="-8dp"
+                        android:layout_toRightOf="@id/icon_encrypt">
+
+                        <EditText
+                            android:id="@+id/edtResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:hint="Result"
+                            android:textSize="12sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/resetButton"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/result_encryption"
+                        android:layout_margin="22dp"
+                        android:background="#d67601"
+                        android:onClick="encryptOrDecryptUsingKeyphraseOnClick"
+                        android:text="RESET"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </RelativeLayout>
 

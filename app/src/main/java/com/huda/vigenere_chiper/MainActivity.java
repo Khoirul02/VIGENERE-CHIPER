@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
