@@ -9,17 +9,20 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText text;
-    private EditText keyphrase;
-    private RadioButton encrypt;
-    private RadioButton decrypt;
+    private EditText edtPlain;
+    private EditText edtKey;
+    //    private RadioButton encrypt;
+//    private RadioButton decrypt;
+    private Switch sw;
+    private Button resetButton;
     private Button runButton;
-    private EditText answer;
+    private EditText edtResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        text = findViewById(com.huda.vigenere_chiper.R.id.text);
-        keyphrase = findViewById(com.huda.vigenere_chiper.R.id.keyphrase);
-        encrypt = findViewById(com.huda.vigenere_chiper.R.id.encrypt);
-        decrypt = findViewById(com.huda.vigenere_chiper.R.id.decrypt);
+        edtPlain = findViewById(com.huda.vigenere_chiper.R.id.edtPlain);
+        edtKey = findViewById(com.huda.vigenere_chiper.R.id.edtKey);
+        sw = findViewById(com.huda.vigenere_chiper.R.id.sw);
         runButton = findViewById(com.huda.vigenere_chiper.R.id.runButton);
-        answer = findViewById(com.huda.vigenere_chiper.R.id.answer);
+        resetButton = findViewById(com.huda.vigenere_chiper.R.id.resetButton);
+        edtResult = findViewById(com.huda.vigenere_chiper.R.id.edtResult);
     }
 
     public void encryptOrDecryptUsingKeyphraseOnClick(View view) {
@@ -49,51 +52,47 @@ public class MainActivity extends AppCompatActivity {
             }
 
             shiftedString = null;
-            String textFromCipher = this.text.getText().toString();
-            String keyphraseFromCipher = this.keyphrase.getText().toString();
+            String textFromCipher = this.edtPlain.getText().toString();
+            String keyphraseFromCipher = this.edtKey.getText().toString();
 
             if (!checkForEmptyInvalidInput(textFromCipher, keyphraseFromCipher)) {
                 // Input parameters are all correct.
-                if (encrypt.isChecked()) {
+                if (sw.isChecked()) {
+                    // Decrypt option.
+                    shiftedString = this.decryptAlgorithm(textFromCipher, keyphraseFromCipher);
+                } else {
                     // Encrypt option.
                     shiftedString = this.encryptAlgorithm(textFromCipher, keyphraseFromCipher);
                 }
-                if (decrypt.isChecked()) {
-                    // Decrypt option.
-                    shiftedString = this.decryptAlgorithm(textFromCipher, keyphraseFromCipher);
-                }
-                this.answer.setText(shiftedString.toString());
+                this.edtResult.setText(shiftedString.toString());
             }
         }
-        encrypt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(encrypt.isChecked()){
-                    text.setText("");
-//                    keyphrase.setText("");
-                    answer.setText("");
-                }else{
-                    text.setText("");
-//                    keyphrase.setText("");
-                    answer.setText("");
+                if (sw.isChecked()) {
+                    String result = edtResult.getText().toString();
+                    edtPlain.setText(result);
+                    edtResult.setText("");
+                    sw.setText("Decrypt");
+                } else {
+                    String result = edtResult.getText().toString();
+                    edtPlain.setText(result);
+                    edtResult.setText("");
+                    sw.setText("Encrypt");
                 }
             }
         });
-        decrypt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(encrypt.isChecked()){
-                    text.setText("");
-//                    keyphrase.setText("");
-                    answer.setText("");
-                }else{
-                    text.setText("");
-//                    keyphrase.setText("");
-                    answer.setText("");
-                }
+            public void onClick(View view) {
+                edtPlain.setText("");
+                edtKey.setText("");
+                edtResult.setText("");
             }
         });
     } // end of encryptOrDecryptUsingKeyphrase method.
+
     @SuppressLint("NewApi")
     private String encryptAlgorithm(String text, String keyphrase) {
 
@@ -107,11 +106,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (Character.isAlphabetic(orig)) {
                 if (Character.isUpperCase(orig)) {
-                    sb.append((char)((upper + keyphrase.charAt(j) - 130) % 26 + 65));
+                    sb.append((char) ((upper + keyphrase.charAt(j) - 130) % 26 + 65));
                     ++j;
                     j %= keyphrase.length();
                 } else {
-                    sb.append(Character.toLowerCase((char)((upper + keyphrase.charAt(j) - 130) % 26 + 65)));
+                    sb.append(Character.toLowerCase((char) ((upper + keyphrase.charAt(j) - 130) % 26 + 65)));
                     ++j;
                     j %= keyphrase.length();
                 }
@@ -135,11 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (Character.isAlphabetic(orig)) {
                 if (Character.isUpperCase(orig)) {
-                    sb.append((char)((upper - keyphrase.charAt(j) + 26) % 26 + 65));
+                    sb.append((char) ((upper - keyphrase.charAt(j) + 26) % 26 + 65));
                     ++j;
                     j %= keyphrase.length();
                 } else {
-                    sb.append(Character.toLowerCase((char)((upper - keyphrase.charAt(j) + 26) % 26 + 65)));
+                    sb.append(Character.toLowerCase((char) ((upper - keyphrase.charAt(j) + 26) % 26 + 65)));
                     ++j;
                     j %= keyphrase.length();
                 }
@@ -155,13 +154,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Current text has no alphabetical characters. Text must at least one alphabetical character.
         if (!text.matches(".*[a-zA-Z]+.*")) {
-            this.text.setError("Nothing to encode/decode");
+            this.edtPlain.setError("Nothing to encode/decode");
             isError = true;
         }
 
         // Current keyphrase is either null or empty.
         if (null == keyphrase || keyphrase.isEmpty()) {
-            this.keyphrase.setError("Keyphrase required");
+            this.edtKey.setError("Key required");
             isError = true;
         }
 
@@ -169,17 +168,18 @@ public class MainActivity extends AppCompatActivity {
         boolean valid = this.checkIfKeyphraseValid(keyphrase);
         if (!valid) {
             // Non-alphabetical character(s) in keyphrase.
-            this.keyphrase.setError("Non-alphabetical character(s) in keyphrase");
+            this.edtKey.setError("Non-alphabetical character(s) in key");
             isError = true;
         }
         return isError;
     } // end of checkForEmptyInvalidInput.
+
     @SuppressLint("NewApi")
     private boolean checkIfKeyphraseValid(String keyphrase) {
 
         boolean valid = true;
 
-        for(int z = 0; z < keyphrase.length(); ++z) {
+        for (int z = 0; z < keyphrase.length(); ++z) {
             char c = keyphrase.charAt(z);
             if (!Character.isAlphabetic(c)) {
                 valid = false;
